@@ -1,8 +1,10 @@
 ﻿using System;
 
-public class Class1
+public class AFDConfigLoaderService
 {
-	public Class1()
+	public AFDConfigLoaderService()
 	{
+		AFD afd;
+		Estado estadoAtual;
 	}
 }
