@@ -1,13 +1,13 @@
 ﻿using System;
 
-public class Class1
+public class AFD
 {
-	public Class1()
+	public AFD()
 	{
-		var conjuntoEstados;
-		var alfabeto;
-		var transicoes;
-		var estadoInicial;
-		var estadosFinal;
+		List<Estado> conjuntoEstados;
+		List<char> alfabeto;
+		List<Transicao> transicoes;
+		Estado estadoInicial;
+		List<Estado> estadosFinais;
     }
 }

@@ -1,11 +1,11 @@
 ﻿using System;
 
-public class Class1
+public class Transicao
 {
-	public Class1()
+	public Transicao()
 	{
-		var estadoOrigem;
-		var estadoDestino;
-		var simbolo;
+		Estado estadoOrigem;
+		Estado estadoDestino;
+		char simbolo;
     }
 }

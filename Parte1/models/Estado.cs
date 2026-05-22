@@ -4,7 +4,7 @@ public class Estado
 {
 	public Estado()
 	{
-		var nome;
-		var indicador;
+		string nome;
+		bool indicador;
 	}
 }
