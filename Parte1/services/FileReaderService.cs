@@ -1,9 +1,9 @@
 ﻿using System;
 
-public class FIleReaderService
+public class FileReaderService
 {
 	public string entrada { get; set; }
-    public FIleReaderService(string entrada)
+    public FileReaderService(string entrada)
 	{
 		this.entrada = entrada;
 	}

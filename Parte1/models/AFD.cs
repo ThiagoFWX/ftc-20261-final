@@ -14,13 +14,14 @@ public class AFD
         this.alfabeto = alfabeto;
         this.transicoes = transicoes;
         this.estadosFinais = estadosFinais;
+        this.estadoInicial = estadoInicial;
     }
 
     public Transicao getTransicao(Estado estadoOrigem, char simbolo)
     {
         foreach (Transicao t in transicoes)
         {
-            if (t.estadoOrigem == estadoOrigem && t.simbolo == simbolo)
+            if (t.estadoOrigem.nome == estadoOrigem.nome && t.simbolo == simbolo)
             {
                 return t;
             }
