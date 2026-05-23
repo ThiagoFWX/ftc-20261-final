@@ -2,8 +2,13 @@
 
 public class AfdSimulatorService
 {
-	public AfdSimulatorService()
+	public AFD afdJson { get; set; }
+	public Estado estadoAtual { get; set; }
+	public List<Estado> rastro { get; set; }
+    public AfdSimulatorService(AFD afdJson, Estado estadoAtual, List<Estado> rastro)
 	{
-		AFD afdJson;
-	}
+		this.afdJson = afdJson;
+		this.estadoAtual = estadoAtual;
+		this.rastro = rastro;
+    }
 }

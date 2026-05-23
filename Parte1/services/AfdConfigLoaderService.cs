@@ -2,9 +2,15 @@
 
 public class AFDConfigLoaderService
 {
-	public AFDConfigLoaderService()
+    public AFD afd { get; set; }
+    public Estado estadoAtual { get; set; }
+    public AFDConfigLoaderService(AFD afd,Estado estadoAtual)
 	{
-		AFD afd;
-		Estado estadoAtual;
+        this.afd = afd;
+        this.estadoAtual = estadoAtual;
 	}
+    public AFD carregarAFD()
+    {
+        return afd;
+    }
 }
