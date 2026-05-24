@@ -27,13 +27,15 @@ public class AFD
     }
 
     public Transicao BuscarTransicao(
-        Estado estadoOrigem,
-        char simbolo)
+    Estado estadoOrigem,
+    char simbolo)
     {
         foreach (Transicao transicao in Transicoes)
         {
             if (
-                transicao.EstadoOrigem.Nome == estadoOrigem.Nome &&
+                transicao.EstadoOrigem.Nome ==
+                estadoOrigem.Nome &&
+
                 transicao.Simbolo == simbolo)
             {
                 return transicao;
@@ -42,4 +44,5 @@ public class AFD
 
         return null;
     }
+
 }

@@ -1,16 +1,61 @@
-﻿using System;
+﻿using Parte1.models;
+using System;
+using System.Text.Json;
 
 public class AFDConfigLoaderService
 {
     public AFD CarregarAFD(string caminhoJson)
     {
-        // Futuramente:
-        // 1. Ler JSON
-        // 2. Desserializar
-        // 3. Criar estados
-        // 4. Criar transições
-        // 5. Retornar AFD
+        string json = File.ReadAllText(caminhoJson);
 
-        return null;
+        AfdJsonModel afdJson =
+            JsonSerializer.Deserialize<AfdJsonModel>(json);
+
+        List<Estado> estados = new List<Estado>();
+
+        foreach (string nomeEstado in afdJson.estados)
+        {
+            bool ehFinal =
+                afdJson.estadosFinais.Contains(nomeEstado);
+
+            estados.Add(
+                new Estado(nomeEstado, ehFinal));
+        }
+
+        Estado estadoInicial =
+            estados.First(
+                e => e.Nome == afdJson.estadoInicial);
+
+        List<Estado> estadosFinais =
+            estados.Where(
+                e => e.EhFinal).ToList();
+
+        List<Transicao> transicoes =
+            new List<Transicao>();
+
+        foreach (TransicaoJsonModel transicaoJson
+                 in afdJson.transicoes)
+        {
+            Estado origem =
+                estados.First(
+                    e => e.Nome == transicaoJson.origem);
+
+            Estado destino =
+                estados.First(
+                    e => e.Nome == transicaoJson.destino);
+
+            transicoes.Add(
+                new Transicao(
+                    origem,
+                    transicaoJson.simbolo,
+                    destino));
+        }
+
+        return new AFD(
+            estados,
+            afdJson.alfabeto,
+            transicoes,
+            estadoInicial,
+            estadosFinais);
     }
 }
