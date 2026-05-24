@@ -1,8 +1,10 @@
-﻿using System;
+﻿namespace Parte2.Models;
 
-public class Class1
+public static class EstadoPilha
 {
-	public Class1()
-	{
-	}
+    public const string LendoAs = "lendo_as";
+    public const string LendoBs = "lendo_bs";
+
+    public const string EmpilhandoPalindromo = "empilhando_palindromo";
+    public const string DesempilhandoPalindromo = "desempilhando_palindromo";
 }
