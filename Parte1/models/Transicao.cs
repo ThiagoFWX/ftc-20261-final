@@ -2,18 +2,24 @@
 
 public class Transicao
 {
-	public Estado estadoOrigem { get; set; }
-    public Estado estadoDestino {  get; set; }
-    public char simbolo {  get; set; }
+    public Estado EstadoOrigem { get; set; }
+
+    public char Simbolo { get; set; }
+
+    public Estado EstadoDestino { get; set; }
+
+    public Transicao(
+        Estado estadoOrigem,
+        char simbolo,
+        Estado estadoDestino)
+    {
+        EstadoOrigem = estadoOrigem;
+        Simbolo = simbolo;
+        EstadoDestino = estadoDestino;
+    }
+
     public override string ToString()
     {
-        return "(" + simbolo +","+ estadoOrigem+ ")" + "=" + estadoDestino;
-    }
-    public Transicao(Estado estadoOrigem, Estado estadoDestino, char simbolo)
-	{
-		this.estadoOrigem= estadoOrigem;
-        this.estadoDestino = estadoDestino;
-        this.simbolo = simbolo;
-
+        return $"δ({EstadoOrigem}, {Simbolo}) = {EstadoDestino}";
     }
 }

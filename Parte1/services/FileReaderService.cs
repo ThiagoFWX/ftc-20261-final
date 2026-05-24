@@ -2,22 +2,21 @@
 
 public class FileReaderService
 {
-	public string entrada { get; set; }
-    public FileReaderService(string entrada)
-	{
-		this.entrada = entrada;
-	}
-	public List<String> lerEntrada()
+    public List<string> LerEntradas(string caminhoArquivo)
     {
-        List<String> linhas = new List<String>();
-        using (StreamReader sr = new StreamReader(entrada))
+        List<string> linhas = new List<string>();
+
+        using (StreamReader streamReader =
+               new StreamReader(caminhoArquivo))
         {
             string linha;
-            while ((linha = sr.ReadLine()) != null)
+
+            while ((linha = streamReader.ReadLine()) != null)
             {
                 linhas.Add(linha);
             }
         }
+
         return linhas;
     }
 }

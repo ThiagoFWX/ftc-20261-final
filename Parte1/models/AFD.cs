@@ -2,30 +2,44 @@
 
 public class AFD
 {
-    public List<Estado> conjuntoEstados { get; set; }
-    public List<char> alfabeto { get; set; }
-    public List<Transicao> transicoes { get; set; }
-    public Estado estadoInicial { get; set; }
-    public List<Estado> estadosFinais { get; set; }
-    public AFD(List<Estado> conjuntoEstados,List<char> alfabeto,List<Transicao> transicoes,Estado estadoInicial,
-    List<Estado> estadosFinais)
-	{
-		this.conjuntoEstados = conjuntoEstados;
-        this.alfabeto = alfabeto;
-        this.transicoes = transicoes;
-        this.estadosFinais = estadosFinais;
-        this.estadoInicial = estadoInicial;
+    public List<Estado> ConjuntoEstados { get; set; }
+
+    public List<char> Alfabeto { get; set; }
+
+    public List<Transicao> Transicoes { get; set; }
+
+    public Estado EstadoInicial { get; set; }
+
+    public List<Estado> EstadosFinais { get; set; }
+
+    public AFD(
+        List<Estado> conjuntoEstados,
+        List<char> alfabeto,
+        List<Transicao> transicoes,
+        Estado estadoInicial,
+        List<Estado> estadosFinais)
+    {
+        ConjuntoEstados = conjuntoEstados;
+        Alfabeto = alfabeto;
+        Transicoes = transicoes;
+        EstadoInicial = estadoInicial;
+        EstadosFinais = estadosFinais;
     }
 
-    public Transicao getTransicao(Estado estadoOrigem, char simbolo)
+    public Transicao BuscarTransicao(
+        Estado estadoOrigem,
+        char simbolo)
     {
-        foreach (Transicao t in transicoes)
+        foreach (Transicao transicao in Transicoes)
         {
-            if (t.estadoOrigem.nome == estadoOrigem.nome && t.simbolo == simbolo)
+            if (
+                transicao.EstadoOrigem.Nome == estadoOrigem.Nome &&
+                transicao.Simbolo == simbolo)
             {
-                return t;
+                return transicao;
             }
         }
+
         return null;
     }
 }
