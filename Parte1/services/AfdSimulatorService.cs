@@ -6,13 +6,15 @@ public class AfdSimulatorService
 
     public Estado EstadoAtual { get; set; }
 
-    public List<Estado> Rastro { get; set; }
+    public List<string> Rastro { get; set; }
 
     public AfdSimulatorService(AFD afd)
     {
         Afd = afd;
+
         EstadoAtual = afd.EstadoInicial;
-        Rastro = new List<Estado>();
+
+        Rastro = new List<string>();
     }
 
     public bool Simular(string cadeia)
@@ -21,10 +23,9 @@ public class AfdSimulatorService
 
         Rastro.Clear();
 
-        RegistrarRastro(EstadoAtual);
-
         foreach (char simbolo in cadeia)
         {
+            // Validação do alfabeto
             if (!Afd.Alfabeto.Contains(simbolo))
             {
                 Console.WriteLine(
@@ -33,27 +34,39 @@ public class AfdSimulatorService
                 return false;
             }
 
+            // Busca transição
             Transicao transicao =
                 Afd.BuscarTransicao(
                     EstadoAtual,
                     simbolo);
 
+            // Se não existir transição
             if (transicao == null)
             {
                 return false;
             }
 
+            // Registrar rastreamento
+            RegistrarRastro(
+                transicao.EstadoOrigem,
+                simbolo,
+                transicao.EstadoDestino);
+
+            // Atualizar estado atual
             EstadoAtual =
                 transicao.EstadoDestino;
-
-            RegistrarRastro(EstadoAtual);
         }
 
+        // Verifica se terminou em estado final
         return EstadoAtual.EhFinal;
     }
 
-    public void RegistrarRastro(Estado estado)
+    public void RegistrarRastro(
+        Estado origem,
+        char simbolo,
+        Estado destino)
     {
-        Rastro.Add(estado);
+        Rastro.Add(
+            $"{origem} --{simbolo}--> {destino}");
     }
 }
