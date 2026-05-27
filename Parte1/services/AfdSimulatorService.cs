@@ -25,6 +25,14 @@ public class AfdSimulatorService
 
         foreach (char simbolo in cadeia)
         {
+            if (!Afd.Alfabeto.Contains(simbolo))
+            {
+                Console.WriteLine(
+                    $"Símbolo inválido encontrado: {simbolo}");
+
+                return false;
+            }
+
             Transicao transicao =
                 Afd.BuscarTransicao(
                     EstadoAtual,
