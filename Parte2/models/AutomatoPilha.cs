@@ -2,9 +2,9 @@
 
 public class AutomatoPilha
 {
-    public string EstadoInicial { get; set; }
+    public string estadoInicial { get; set; }
 
-    public List<string> EstadosFinais { get; set; }
+    public List<string> estadosFinais { get; set; }
 
-    public List<TransicaoPilha> Transicoes { get; set; }
+    public List<TransicaoPilha> transicoes { get; set; }
 }
