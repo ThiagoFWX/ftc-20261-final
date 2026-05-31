@@ -10,8 +10,16 @@
   <ItemGroup>
     <Folder Include="data\" />
     <Folder Include="config\" />
-    <Folder Include="models\" />
     <Folder Include="services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="config\afd.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Update="data\entradas.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

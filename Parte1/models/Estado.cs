@@ -2,21 +2,19 @@
 
 public class Estado
 {
-    public string nome
-	{
-		get;
-        set;
+    public string Nome { get; set; }
+
+    public bool EhFinal { get; set; }
+
+    public Estado(string nome, bool ehFinal)
+    {
+        Nome = nome;
+        EhFinal = ehFinal;
     }
 
-	public bool indicador {  get; set; }
     public override string ToString()
     {
-        return nome;
+        return Nome;
     }
-    public Estado(string nome, bool indicador)
-    {
-        this.nome = nome;
-        this.indicador = indicador;
-    }
-	
+
 }
