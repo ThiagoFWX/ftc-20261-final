@@ -1,21 +1,20 @@
 ﻿using System.Collections.Generic;
 
+namespace Parte2.Models;
+
 public class AutomatoPilha
 {
+    public string nome { get; set; }
     public List<string> estados { get; set; }
     public List<char> alfabetoEntrada { get; set; }
     public List<char> alfabetoPilha { get; set; }
-    public Dictionary<(string, char, char), List<TransicaoPilha>> transicoes { get; set; }
+    public List<TransicaoPilha> transicoes { get; set; }
     public string estadoInicial { get; set; }
     public char simboloInicialPilha { get; set; }
 
-    public AutomatoPilha(List<string> estados,
-        List<char> alfabetoEntrada,
-        List<char> alfabetoPilha,
-        Dictionary<(string, char, char), List<TransicaoPilha>> transicoes,
-        string estadoInicial,
-        char simboloInicialPilha)
+    public AutomatoPilha(string nome, List<string> estados, List<char> alfabetoEntrada, List<char> alfabetoPilha, List<TransicaoPilha> transicoes, string estadoInicial, char simboloInicialPilha)
     {
+        this.nome = nome;
         this.estados = estados;
         this.alfabetoEntrada = alfabetoEntrada;
         this.alfabetoPilha = alfabetoPilha;
@@ -26,18 +25,18 @@ public class AutomatoPilha
 
     public List<TransicaoPilha> ObterTransicoes(string estado, char simboloEntrada, char topoPilha)
     {
-        var chave = (estado, simboloEntrada, topoPilha);
+        List<TransicaoPilha> possiveisTransicoes = new List<TransicaoPilha>();
 
-        if (this.transicoes.ContainsKey(chave))
+        foreach (TransicaoPilha transicao in this.transicoes)
         {
-            possiveisTransicoes.AddRange(this.transicoes[chave]);
-        }
+            bool lambda = transicoes.EhMovimentoLambda();
 
-        var chaveLambda = (estado, '\0', topoPilha);
-
-        if (this.transicoes.ContainsKey(chaveLambda))
-        {
-            possiveisTransicoes.AddRange(this.transicoes[chaveLambda]);
+            if (transicao.estadoOrigem == estado 
+                && transicao.topoPilha == topoPilha 
+                && (transicao.simboloEntrada == simboloEntrada || lambda))
+            {
+                possiveisTransicoes.Add(transicao);
+            }
         }
 
         return possiveisTransicoes;
