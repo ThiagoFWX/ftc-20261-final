@@ -37,7 +37,7 @@ public class ConfiguracaoInstantanea
         return new string(pilhaArr);
     }
 
-    public override string ToString()
+    public string ObterChaveVisitada()
     {
         return $"Estado: {this.estado} | Entrada: '{this.posicaoEntrada}' | Pilha: [{ObterConteudoPilha()}]";
     }
