@@ -1,21 +1,44 @@
-﻿public class ConfiguracaoInstantanea
+﻿using System.Text;
+
+namespace Parte2.Models;
+
+public class ConfiguracaoInstantanea
 {
     public string estado { get; set; }
-    public string entradaRestante { get; set; }
-    public string conteudoPilha { get; set; }
+    public int posicaoEntrada { get; set; }
+    public Stack<char> pilha { get; set; }
 
-    public ConfiguracaoInstantanea(string estado, string entradaRestante, Stack<char> pilha)
+    public ConfiguracaoInstantanea(string estado, int posicaoEntrada, Stack<char> pilha)
     {
         this.estado = estado;
-        this.entradaRestante = entradaRestante;
+        this.posicaoEntrada = posicaoEntrada;
+        this.pilha = pilha;
+    }
 
-        char[] pilhaArr = pilha.ToArray();
-        Array.Reverse(pilhaArr);
-        this.conteudoPilha = new string(pilhaArr);
+    public string ObterEntradaRestante(string cadeia)
+    {
+        if (this.posicaoEntrada >= cadeia.Length)
+        {
+            return "ε";
+        }
+        return cadeia.Substring(this.posicaoEntrada);
+    }
+
+    public string ObterConteudoPilha()
+    {
+        if (this.pilha.Count == 0)
+        {
+            return "ε";
+        }
+
+        char[] pilhaArr = this.pilha.ToArray();
+        Array.Reverse(pilhaArr); 
+
+        return new string(pilhaArr);
     }
 
     public override string ToString()
     {
-        return $"Estado: {this.estado} | Entrada: '{this.entradaRestante}' | Pilha: [{this.conteudoPilha}]";
+        return $"Estado: {this.estado} | Entrada: '{this.posicaoEntrada}' | Pilha: [{ObterConteudoPilha()}]";
     }
 }
