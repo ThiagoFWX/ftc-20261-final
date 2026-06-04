@@ -1,17 +1,22 @@
 ﻿public class TransicaoPilha
 {
-    public string estadoAtual { get; set; }
+    public string estadoOrigem { get; set; }
     public char simboloEntrada { get; set; }
     public char topoPilha { get; set; }
     public string proximoEstado { get; set; }
     public string acaoPilha { get; set; }
 
-    public TransicaoPilha(string estadoAtual, char simboloEntrada, char topoPilha, string proximoEstado, string acaoPilha)
+    public TransicaoPilha(string estadoOrigem, char simboloEntrada, char topoPilha, string proximoEstado, string acaoPilha)
     {
-        this.estadoAtual = estadoAtual;
+        this.estadoOrigem = estadoOrigem;
         this.simboloEntrada = simboloEntrada;
         this.topoPilha = topoPilha;
         this.proximoEstado = proximoEstado;
         this.acaoPilha = acaoPilha;
+    }
+
+    public bool EhMovimentoLambda()
+    {
+        return this.simboloEntrada == '\0';
     }
 }
