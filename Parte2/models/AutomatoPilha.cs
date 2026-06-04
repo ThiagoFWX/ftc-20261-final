@@ -29,7 +29,7 @@ public class AutomatoPilha
 
         foreach (TransicaoPilha transicao in this.transicoes)
         {
-            bool lambda = transicoes.EhMovimentoLambda();
+            bool lambda = transicao.EhMovimentoLambda();
 
             if (transicao.estadoOrigem == estado 
                 && transicao.topoPilha == topoPilha 
