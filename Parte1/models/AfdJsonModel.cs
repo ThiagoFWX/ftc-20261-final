@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Parte1.models
 {
-    internal class AfdJsonModel
+    public class AfdJsonModel
     {
         public List<string> estados { get; set; }
 

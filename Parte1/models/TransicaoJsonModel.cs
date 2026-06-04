@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Parte1.models
 {
-    internal class TransicaoJsonModel
+    public class TransicaoJsonModel
     {
         public string origem { get; set; }
 

@@ -11,6 +11,13 @@ public class AFDConfigLoaderService
         AfdJsonModel afdJson =
             JsonSerializer.Deserialize<AfdJsonModel>(json);
 
+        // Trata json nulo, caso a desserialização falhe
+        if (afdJson == null)
+        {
+            throw new Exception(
+                "Falha ao carregar configuração.");
+        }
+
         List<Estado> estados = new List<Estado>();
 
         foreach (string nomeEstado in afdJson.estados)

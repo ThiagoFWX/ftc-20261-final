@@ -43,8 +43,12 @@ public class AfdSimulatorService
             // Se não existir transição
             if (transicao == null)
             {
+                //mostra o estado atual e o símbolo que causou a falha
+                Console.WriteLine($"Não existe transição para {EstadoAtual} com {simbolo}"); 
                 return false;
             }
+
+            
 
             // Registrar rastreamento
             RegistrarRastro(
