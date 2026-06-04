@@ -4,7 +4,7 @@ using System.IO;
 
 public class FileReaderService
 {
-    public List<string> LerCadeiasDaSecao(string caminhoArquivo, string nomeSecao)
+    public List<string> LerEntradas(string caminhoArquivo, string nomeSecao)
     {
         List<string> cadeias = new List<string>();
 
