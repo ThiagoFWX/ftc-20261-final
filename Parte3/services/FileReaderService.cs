@@ -1,10 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Parte3.services
+﻿namespace Parte3.services
 {
-    internal class FileReaderService
+    public class FileReaderService
     {
+        public List<string>
+            LerEntradas(
+            string caminhoArquivo)
+        {
+            List<string>
+                entradas =
+                new();
+
+            using (
+                StreamReader
+                reader =
+                new StreamReader(
+                    caminhoArquivo))
+            {
+                string linha;
+
+                while (
+                    (
+                    linha =
+                    reader.ReadLine()
+                    )
+                    !=
+                    null)
+                {
+                    if (
+                        !string
+                        .IsNullOrWhiteSpace(
+                            linha))
+                    {
+                        entradas
+                        .Add(
+                            linha
+                            .Trim());
+                    }
+                }
+            }
+
+            return entradas;
+        }
     }
 }

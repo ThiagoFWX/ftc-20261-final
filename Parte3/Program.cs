@@ -5,50 +5,83 @@ namespace Parte3
 {
     internal class Program
     {
-        static void Main(
-        string[] args)
+        static void Main(string[] args)
         {
-            MtConfigLoaderService
-            loader
-            =
-            new();
+            // Carrega configuração da MT
+            MtConfigLoaderService loader =
+                new MtConfigLoaderService();
 
             MaquinaTuring mt =
-            loader.CarregarMT(
-            "config/mt.json");
+                loader.CarregarMT(
+                    "config/mt.json");
 
-            MtSimulatorService
-            sim =
-            new(
-            mt);
+            // Ler entradas
+            FileReaderService reader =
+                new FileReaderService();
 
-            bool aceita =
-            sim.Simular(
-            "a");
+            List<string> entradas =
+                reader.LerEntradas(
+                    "data/entradas_mt.txt");
 
+
+            // Criar simulador
+            MtSimulatorService simulator =
+                new MtSimulatorService(
+                    mt);
+
+            // Executar todas entradas
             foreach (
-            string passo
-            in sim.Rastro)
+                string entrada
+                in entradas)
             {
+                bool aceita =
+                    simulator.Simular(
+                        entrada);
+
+                Console.WriteLine();
+
                 Console.WriteLine(
-                passo);
+                    "=================================");
+
+                Console.WriteLine(
+                    $"Entrada: {entrada}");
+
+                Console.WriteLine();
+
+                Console.WriteLine(
+                    "RASTREAMENTO:");
+
+                Console.WriteLine();
+
+                foreach (
+                    string passo
+                    in simulator.Rastro)
+                {
+                    Console.WriteLine(
+                        passo);
+                }
+
+                Console.WriteLine();
+
+                Console.WriteLine(
+
+                    aceita
+
+                    ?
+
+                    "RESULTADO: ACEITA"
+
+                    :
+
+                    "RESULTADO: REJEITA"
+
+                );
+
+                Console.WriteLine(
+                    "=================================");
+
+                Console.WriteLine();
             }
-
-            Console.WriteLine();
-
-            Console.WriteLine(
-
-            aceita
-
-            ?
-
-            "ACEITA"
-
-            :
-
-            "REJEITA"
-
-            );
 
             Console.ReadKey();
         }
