@@ -4,9 +4,7 @@ using System.Text;
 
 namespace Parte3.models
 {
-    public class Fita
+    internal class TransicaoMtJsonModel
     {
-        public Dictionary<int, string> Celdas { get; set; }
-
     }
 }

@@ -4,7 +4,8 @@ using System.Text;
 
 namespace Parte3.models
 {
-    internal class Cabecote
+    public class Cabecote
     {
+        public int Posicao { get; set; }
     }
 }
