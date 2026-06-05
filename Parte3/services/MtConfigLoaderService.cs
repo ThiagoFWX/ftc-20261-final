@@ -1,15 +1,11 @@
 ﻿using Parte3.models;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Text.Json;
 
 namespace Parte3.services
 {
     public class MtConfigLoaderService
     {
-        public MaquinaTuring
-            CarregarMT(
+        public MaquinaTuring CarregarMT(
             string caminho)
         {
             string json =
@@ -18,19 +14,17 @@ namespace Parte3.services
 
             MtJsonModel mtJson =
                 JsonSerializer
-                .Deserialize<
-                MtJsonModel>(
-                json);
+                .Deserialize<MtJsonModel>(
+                    json);
 
-            if (
-                mtJson == null)
+            if (mtJson == null)
             {
                 throw new Exception(
                     "Erro ao carregar MT");
             }
 
-            List<EstadoMT>
-                estados =
+            // Criar estados
+            List<EstadoMT> estados =
                 new();
 
             foreach (
@@ -39,59 +33,89 @@ namespace Parte3.services
             {
                 estados.Add(
                     new EstadoMT(
+
                         nome,
 
                         nome ==
-                        mtJson
-                        .estadoAceitacao,
+                        mtJson.estadoAceitacao,
 
                         nome ==
-                        mtJson
-                        .estadoRejeicao
+                        mtJson.estadoRejeicao
                     )
                 );
             }
 
+            // Buscar estados especiais
             EstadoMT inicial =
-                estados
-                .First(
+                estados.First(
                     x =>
-                    x.Nome
-                    ==
-                    mtJson
-                    .estadoInicial);
+                    x.Nome ==
+                    mtJson.estadoInicial);
 
             EstadoMT aceitacao =
-                estados
-                .First(
+                estados.First(
                     x =>
                     x.EhAceitacao);
 
             EstadoMT rejeicao =
-                estados
-                .First(
+                estados.First(
                     x =>
                     x.EhRejeicao);
 
-            return
-                new MaquinaTuring(
-                    estados,
+            // Criar transições
+            List<TransicaoMT> transicoes =
+                new();
 
-                    mtJson
-                    .alfabetoEntrada,
+            foreach (
+                TransicaoMtJsonModel t
+                in mtJson.transicoes)
+            {
+                EstadoMT origem =
+                    estados.First(
+                        x =>
+                        x.Nome ==
+                        t.origem);
 
-                    mtJson
-                    .alfabetoFita,
+                EstadoMT destino =
+                    estados.First(
+                        x =>
+                        x.Nome ==
+                        t.destino);
 
-                    new List<
-                    TransicaoMT>(),
+                transicoes.Add(
 
-                    inicial,
+                    new TransicaoMT(
 
-                    aceitacao,
+                        origem,
 
-                    rejeicao
+                        destino,
+
+                        t.simbolo,
+
+                        t.novoSimbolo,
+
+                        t.direcao
+                    )
                 );
+            }
+
+            // Retornar máquina pronta
+            return new MaquinaTuring(
+
+                estados,
+
+                mtJson.alfabetoEntrada,
+
+                mtJson.alfabetoFita,
+
+                transicoes,
+
+                inicial,
+
+                aceitacao,
+
+                rejeicao
+            );
         }
     }
 }

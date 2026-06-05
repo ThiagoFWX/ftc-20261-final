@@ -30,5 +30,13 @@
 
   "estadoRejeicao": "qreject",
 
-  "transicoes": []
+  "transicoes": [
+    {
+      "origem": "q0",
+      "simbolo": "a",
+      "destino": "qaccept",
+      "novoSimbolo": "a",
+      "direcao": "R"
+    }
+  ]
 }
