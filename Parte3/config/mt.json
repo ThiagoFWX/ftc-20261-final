@@ -1,0 +1,34 @@
+{
+  "estados": [
+    "q0",
+    "q1",
+    "q2",
+    "q3",
+    "qaccept",
+    "qreject"
+  ],
+
+  "alfabetoEntrada": [
+    "a",
+    "b",
+    "c"
+  ],
+
+  "alfabetoFita": [
+    "a",
+    "b",
+    "c",
+    "X",
+    "Y",
+    "Z",
+    "_"
+  ],
+
+  "estadoInicial": "q0",
+
+  "estadoAceitacao": "qaccept",
+
+  "estadoRejeicao": "qreject",
+
+  "transicoes": []
+}
