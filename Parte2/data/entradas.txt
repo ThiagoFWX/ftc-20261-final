@@ -1,0 +1,12 @@
+[L2]
+ab
+aabb
+aab
+ba
+ε
+
+[L3]
+a
+aba
+aab
+ab
