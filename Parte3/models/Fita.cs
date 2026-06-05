@@ -8,7 +8,7 @@ namespace Parte3.models
     {
         public Dictionary<int, string> Celulas { get; set; }
         public char Branco { get; set; }
-        public Fita(string entrada,  char branco)
+        public Fita(string entrada,  char branco = '_')
         {
             Branco = branco;
             Celulas = new Dictionary<int, string>();
