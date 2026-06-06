@@ -3,7 +3,7 @@
 ## 👥 Integrantes da Equipe
 
 * Ana Carolina Rodrigues de Almeida César Alves – 72500719
-* Thiago Ferraz Werneck Xavier – Matrícula
+* Thiago Ferraz Werneck Xavier – 72301244
 
 ## 📌 Descrição do Projeto
 
