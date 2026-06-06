@@ -2,39 +2,19 @@
 {
     public class FileReaderService
     {
-        public List<string>
-            LerEntradas(
-            string caminhoArquivo)
+        public List<string> LerEntradas(string caminhoArquivo)
         {
-            List<string>
-                entradas =
-                new();
+            List<string> entradas = new();
 
-            using (
-                StreamReader
-                reader =
-                new StreamReader(
-                    caminhoArquivo))
+            using (StreamReader reader = new StreamReader(caminhoArquivo))
             {
                 string linha;
 
-                while (
-                    (
-                    linha =
-                    reader.ReadLine()
-                    )
-                    !=
-                    null)
+                while ((linha = reader.ReadLine()) != null)
                 {
-                    if (
-                        !string
-                        .IsNullOrWhiteSpace(
-                            linha))
+                    if (!string.IsNullOrWhiteSpace(linha))
                     {
-                        entradas
-                        .Add(
-                            linha
-                            .Trim());
+                        entradas.Add(linha.Trim());
                     }
                 }
             }

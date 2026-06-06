@@ -6,28 +6,19 @@ namespace Parte3.models
 {
     public class Cabecote
     {
-        public int Posicao
-        {
-            get;
-            set;
-        }
+        public int Posicao { get; set; }
 
         public Cabecote()
         {
             Posicao = 0;
         }
 
-        public void Mover(
-            char direcao)
+        public void Mover(char direcao)
         {
-            if (
-                direcao == 'R')
+            if (direcao == 'R')
             {
                 Posicao++;
-            }
-
-            else if (
-                direcao == 'L')
+            } else if (direcao == 'L')
             {
                 Posicao--;
             }
@@ -35,8 +26,7 @@ namespace Parte3.models
 
         public override string ToString()
         {
-            return
-                Posicao.ToString();
+            return Posicao.ToString();
         }
     }
 }

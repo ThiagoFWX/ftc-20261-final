@@ -8,7 +8,8 @@ namespace Parte3.models
     {
         public Dictionary<int, string> Celulas { get; set; }
         public char Branco { get; set; }
-        public Fita(string entrada,  char branco = '_')
+
+        public Fita(string entrada, char branco = '_')
         {
             Branco = branco;
             Celulas = new Dictionary<int, string>();
@@ -17,6 +18,7 @@ namespace Parte3.models
                 Celulas[i] = entrada[i].ToString();
             }
         }
+
         public char Ler(int posicao)
         {
             if (Celulas.ContainsKey(posicao))
@@ -25,19 +27,23 @@ namespace Parte3.models
             }
             return Branco;
         }
+
         public void Escrever(int posicao, char simbolo)
         {
             Celulas[posicao] = simbolo.ToString();
         }
+
         public override string ToString()
         {
-            if(Celulas.Count == 0)
+            if (Celulas.Count == 0)
             {
                 return Branco.ToString();
             }
+
             int menor = Celulas.Keys.Min();
             int maior = Celulas.Keys.Max();
             string resultado = "";
+
             for (int i = menor; i <= maior; i++)
             {
                 resultado += Ler(i);

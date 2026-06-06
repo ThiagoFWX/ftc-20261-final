@@ -11,6 +11,7 @@ namespace Parte3.models
         public char SimboloLido { get; set; }
         public char NovoSimbolo { get; set; }
         public char Direcao { get; set; }
+
         public TransicaoMT(EstadoMT estadoOrigem, EstadoMT estadoDestino, char simboloLido, char novoSimbolo, char direcao)
         {
             EstadoOrigem = estadoOrigem;
@@ -19,10 +20,10 @@ namespace Parte3.models
             NovoSimbolo = novoSimbolo;
             Direcao = direcao;
         }
+
         public override string ToString()
         {
-            return
-                $"δ({EstadoOrigem},{SimboloLido}) → ({EstadoDestino},{NovoSimbolo},{Direcao})";
+            return $"δ({EstadoOrigem},{SimboloLido}) → ({EstadoDestino},{NovoSimbolo},{Direcao})";
         }
     }
 }

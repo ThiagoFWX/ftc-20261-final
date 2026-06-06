@@ -8,78 +8,39 @@ namespace Parte3
         static void Main(string[] args)
         {
             // Carrega configuração da MT
-            MtConfigLoaderService loader =
-                new MtConfigLoaderService();
+            MtConfigLoaderService loader = new MtConfigLoaderService();
 
-            MaquinaTuring mt =
-                loader.CarregarMT(
-                    "config/mt.json");
+            MaquinaTuring mt = loader.CarregarMT("config/mt.json");
 
             // Ler entradas
-            FileReaderService reader =
-                new FileReaderService();
+            FileReaderService reader = new FileReaderService();
 
-            List<string> entradas =
-                reader.LerEntradas(
-                    "data/entradas_mt.txt");
+            List<string> entradas = reader.LerEntradas("data/entradas_mt.txt");
 
 
             // Criar simulador
-            MtSimulatorService simulator =
-                new MtSimulatorService(
-                    mt);
+            MtSimulatorService simulator = new MtSimulatorService(mt);
 
             // Executar todas entradas
-            foreach (
-                string entrada
-                in entradas)
+            foreach (string entrada in entradas)
             {
-                bool aceita =
-                    simulator.Simular(
-                        entrada);
+                bool aceita = simulator.Simular(entrada);
 
                 Console.WriteLine();
-
-                Console.WriteLine(
-                    "=================================");
-
-                Console.WriteLine(
-                    $"Entrada: {entrada}");
-
+                Console.WriteLine("=================================");
+                Console.WriteLine($"Entrada: {entrada}");
+                Console.WriteLine();
+                Console.WriteLine("RASTREAMENTO:");
                 Console.WriteLine();
 
-                Console.WriteLine(
-                    "RASTREAMENTO:");
-
-                Console.WriteLine();
-
-                foreach (
-                    string passo
-                    in simulator.Rastro)
+                foreach (string passo in simulator.Rastro)
                 {
-                    Console.WriteLine(
-                        passo);
+                    Console.WriteLine(passo);
                 }
 
                 Console.WriteLine();
-
-                Console.WriteLine(
-
-                    aceita
-
-                    ?
-
-                    "RESULTADO: ACEITA"
-
-                    :
-
-                    "RESULTADO: REJEITA"
-
-                );
-
-                Console.WriteLine(
-                    "=================================");
-
+                Console.WriteLine(aceita ? "RESULTADO: ACEITA" : "RESULTADO: REJEITA");
+                Console.WriteLine("=================================");
                 Console.WriteLine();
             }
 

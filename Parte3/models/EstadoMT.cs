@@ -14,7 +14,6 @@ namespace Parte3.models
             Nome = nome;
             EhAceitacao = ehAceitacao;
             EhRejeicao = ehRejeicao;
-
         }
         public override string ToString()
         {
