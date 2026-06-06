@@ -4,6 +4,7 @@
     "q1",
     "q2",
     "q3",
+    "q4",
     "qaccept",
     "qreject"
   ],
@@ -31,11 +32,178 @@
   "estadoRejeicao": "qreject",
 
   "transicoes": [
+
+    {
+      "origem": "q0",
+      "simbolo": "X",
+      "destino": "q0",
+      "novoSimbolo": "X",
+      "direcao": "R"
+    },
+
     {
       "origem": "q0",
       "simbolo": "a",
-      "destino": "qaccept",
+      "destino": "q1",
       "novoSimbolo": "X",
+      "direcao": "R"
+    },
+
+    {
+      "origem": "q0",
+      "simbolo": "Y",
+      "destino": "q4",
+      "novoSimbolo": "Y",
+      "direcao": "R"
+    },
+
+
+
+    {
+      "origem": "q1",
+      "simbolo": "a",
+      "destino": "q1",
+      "novoSimbolo": "a",
+      "direcao": "R"
+    },
+
+    {
+      "origem": "q1",
+      "simbolo": "X",
+      "destino": "q1",
+      "novoSimbolo": "X",
+      "direcao": "R"
+    },
+
+    {
+      "origem": "q1",
+      "simbolo": "Y",
+      "destino": "q1",
+      "novoSimbolo": "Y",
+      "direcao": "R"
+    },
+
+    {
+      "origem": "q1",
+      "simbolo": "b",
+      "destino": "q2",
+      "novoSimbolo": "Y",
+      "direcao": "R"
+    },
+
+
+
+    {
+      "origem": "q2",
+      "simbolo": "b",
+      "destino": "q2",
+      "novoSimbolo": "b",
+      "direcao": "R"
+    },
+
+    {
+      "origem": "q2",
+      "simbolo": "Y",
+      "destino": "q2",
+      "novoSimbolo": "Y",
+      "direcao": "R"
+    },
+
+    {
+      "origem": "q2",
+      "simbolo": "Z",
+      "destino": "q2",
+      "novoSimbolo": "Z",
+      "direcao": "R"
+    },
+
+    {
+      "origem": "q2",
+      "simbolo": "c",
+      "destino": "q3",
+      "novoSimbolo": "Z",
+      "direcao": "L"
+    },
+
+
+
+    {
+      "origem": "q3",
+      "simbolo": "a",
+      "destino": "q3",
+      "novoSimbolo": "a",
+      "direcao": "L"
+    },
+
+    {
+      "origem": "q3",
+      "simbolo": "b",
+      "destino": "q3",
+      "novoSimbolo": "b",
+      "direcao": "L"
+    },
+
+    {
+      "origem": "q3",
+      "simbolo": "c",
+      "destino": "q3",
+      "novoSimbolo": "c",
+      "direcao": "L"
+    },
+
+    {
+      "origem": "q3",
+      "simbolo": "X",
+      "destino": "q3",
+      "novoSimbolo": "X",
+      "direcao": "L"
+    },
+
+    {
+      "origem": "q3",
+      "simbolo": "Y",
+      "destino": "q3",
+      "novoSimbolo": "Y",
+      "direcao": "L"
+    },
+
+    {
+      "origem": "q3",
+      "simbolo": "Z",
+      "destino": "q3",
+      "novoSimbolo": "Z",
+      "direcao": "L"
+    },
+
+    {
+      "origem": "q3",
+      "simbolo": "_",
+      "destino": "q0",
+      "novoSimbolo": "_",
+      "direcao": "R"
+    },
+
+    {
+      "origem": "q4",
+      "simbolo": "Y",
+      "destino": "q4",
+      "novoSimbolo": "Y",
+      "direcao": "R"
+    },
+
+    {
+      "origem": "q4",
+      "simbolo": "Z",
+      "destino": "q4",
+      "novoSimbolo": "Z",
+      "direcao": "R"
+    },
+
+    {
+      "origem": "q4",
+      "simbolo": "_",
+      "destino": "qaccept",
+      "novoSimbolo": "_",
       "direcao": "R"
     }
   ]

@@ -4,167 +4,93 @@ namespace Parte3.services
 {
     public class MtSimulatorService
     {
-        public MaquinaTuring MT
+        public MaquinaTuring MT { get; set; }
+        public EstadoMT EstadoAtual { get; set; }
+        public Fita Fita { get; set; }
+        public Cabecote Cabecote { get; set; }
+        public int Passos { get; set; }
+        public List<string> Rastro { get; set; }
+        public int LimitePassos { get; set; }
+
+        public MtSimulatorService(MaquinaTuring mt, int limite = 1000)
         {
-            get;
-            set;
+            MT = mt;
+            EstadoAtual = mt.EstadoInicial;
+            Cabecote = new Cabecote();
+            Passos = 0;
+            Rastro = new();
+            LimitePassos = limite;
         }
 
-        public EstadoMT EstadoAtual
-        {
-            get;
-            set;
-        }
-
-        public Fita Fita
-        {
-            get;
-            set;
-        }
-
-        public Cabecote Cabecote
-        {
-            get;
-            set;
-        }
-
-        public int Passos
-        {
-            get;
-            set;
-        }
-
-        public List<string> Rastro
-        {
-            get;
-            set;
-        }
-
-        public int LimitePassos
-        {
-            get;
-            set;
-        }
-
-        public MtSimulatorService(
-            MaquinaTuring mt,
-            int limite = 1000)
-        {
-            MT =
-                mt;
-
-            EstadoAtual =
-                mt.EstadoInicial;
-
-            Cabecote =
-                new Cabecote();
-
-            Passos =
-                0;
-
-            Rastro =
-                new();
-
-            LimitePassos =
-                limite;
-        }
         public bool Simular(string entrada)
         {
-            EstadoAtual =
-                MT.EstadoInicial;
-
+            EstadoAtual = MT.EstadoInicial;
             Passos = 0;
-
             Rastro.Clear();
+            Cabecote = new Cabecote();
+            Fita = new Fita(entrada);
 
-            Cabecote =
-                new Cabecote();
-
-            Fita =
-                new Fita(entrada);
-
-            while (
-                Passos
-                <
-                LimitePassos)
+            while (Passos < LimitePassos)
             {
                 RegistrarRastro();
 
-                if (
-                    EstadoAtual
-                    .EhAceitacao)
+                if (EstadoAtual.EhAceitacao)
                 {
                     return true;
                 }
 
-                if (
-                    EstadoAtual
-                    .EhRejeicao)
+                if (EstadoAtual.EhRejeicao)
                 {
                     return false;
                 }
 
-                char simbolo =
-                    Fita.Ler(
-                        Cabecote
-                        .Posicao);
+                char simbolo = Fita.Ler(Cabecote.Posicao);
 
-                TransicaoMT
-                    transicao =
-                    MT
-                    .BuscarTransicao(
-                        EstadoAtual,
-                        simbolo);
+                TransicaoMT transicao = MT.BuscarTransicao(EstadoAtual, simbolo);
 
-                if (
-                    transicao
-                    ==
-                    null)
+                if (transicao == null)
                 {
                     return false;
                 }
 
-                ExecutarTransicao(
-                    transicao);
+                ExecutarTransicao(transicao);
 
                 Passos++;
             }
 
             return false;
         }
-        private void
-        ExecutarTransicao(TransicaoMT t)
+
+        private void ExecutarTransicao(TransicaoMT t)
         {
-            Fita.Escrever(
-                Cabecote.Posicao,
-                t.NovoSimbolo);
-
-            Cabecote.Mover(
-                t.Direcao);
-
-            EstadoAtual =
-                t.EstadoDestino;
+            Fita.Escrever(Cabecote.Posicao, t.NovoSimbolo);
+            Cabecote.Mover(t.Direcao);
+            EstadoAtual = t.EstadoDestino;
         }
-        private void
-        RegistrarRastro()
+
+        private void RegistrarRastro()
         {
-            Rastro.Add(
+            string fitaFormatada = "";
 
-        $"Passo {Passos}"
+            int menor = Fita.Celulas.Count > 0 ? Fita.Celulas.Keys.Min() : 0;
 
-        +
+            int maior = Fita.Celulas.Count > 0 ? Fita.Celulas.Keys.Max() : 0;
 
-        $" | Estado: {EstadoAtual}"
+            for (int i = menor; i <= maior; i++)
+            {
+                char simbolo = Fita.Ler(i);
 
-        +
+                if (i == Cabecote.Posicao)
+                {
+                    fitaFormatada += $"[{simbolo}]";
+                }
+                else
+                {
+                    fitaFormatada += simbolo;
+                }
+            }
 
-        $" | Cabeçote: {Cabecote}"
-
-        +
-
-        $" | Fita: {Fita}"
-
-         );
+            Rastro.Add($"Passo {Passos} | Estado: {EstadoAtual.Nome} | Cabeçote: {Cabecote.Posicao} | Fita: {fitaFormatada}");
         }
     }
 }

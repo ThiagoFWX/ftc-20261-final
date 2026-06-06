@@ -1,4 +1,7 @@
-a
-aa
-aaa
-b
+﻿abc
+aabbcc
+aaabbbccc
+aabbc
+ab
+abc abc
+ε
