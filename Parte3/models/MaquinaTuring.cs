@@ -32,6 +32,7 @@ namespace Parte3.models
             EstadoRejeicao = estadoRejeicao;
         }
 
+        // Procura uma transição válida para o estado e símbolo informados
         public TransicaoMT BuscarTransicao(EstadoMT estado, char simbolo)
         {
             foreach (TransicaoMT transicao in Transicoes)

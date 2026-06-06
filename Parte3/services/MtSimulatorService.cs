@@ -22,6 +22,7 @@ namespace Parte3.services
             LimitePassos = limite;
         }
 
+        // Executa a MT para uma determinada entrada
         public bool Simular(string entrada)
         {
             EstadoAtual = MT.EstadoInicial;
@@ -34,11 +35,13 @@ namespace Parte3.services
 
             while (Passos < LimitePassos)
             {
+                // Verifica se a entrada foi aceita
                 if (EstadoAtual.EhAceitacao)
                 {
                     return true;
                 }
 
+                // Verifica se a entrada foi rejeitada
                 if (EstadoAtual.EhRejeicao)
                 {
                     return false;
@@ -46,6 +49,7 @@ namespace Parte3.services
 
                 char simbolo = Fita.Ler(Cabecote.Posicao);
 
+                // Procura uma transição válida
                 TransicaoMT transicao = MT.BuscarTransicao(EstadoAtual, simbolo);
 
                 if (transicao == null)
@@ -62,6 +66,7 @@ namespace Parte3.services
             return false;
         }
 
+        // Executa uma transição da MT
         private void ExecutarTransicao(TransicaoMT t)
         {
             Fita.Escrever(Cabecote.Posicao, t.NovoSimbolo);
@@ -69,6 +74,7 @@ namespace Parte3.services
             EstadoAtual = t.EstadoDestino;
         }
 
+        // Registra o estado atual para rastreamento
         private void RegistrarRastro()
         {
             string fitaFormatada = "";
@@ -81,6 +87,7 @@ namespace Parte3.services
             {
                 char simbolo = Fita.Ler(i);
 
+                // Destaca a posição atual do cabeçote
                 if (i == Cabecote.Posicao)
                 {
                     fitaFormatada += $"[{simbolo}]";

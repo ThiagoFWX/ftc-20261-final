@@ -5,6 +5,7 @@ namespace Parte3.services
 {
     public class MtConfigLoaderService
     {
+        // Carrega a configuração da MT a partir de um arquivo JSON
         public MaquinaTuring CarregarMT(string caminho)
         {
             string json = File.ReadAllText(caminho);

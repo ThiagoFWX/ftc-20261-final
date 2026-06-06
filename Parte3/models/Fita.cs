@@ -13,12 +13,15 @@ namespace Parte3.models
         {
             Branco = branco;
             Celulas = new Dictionary<int, string>();
+
+            // Carrega a entrada inicial na fita
             for (int i = 0; i < entrada.Length; i++)
             {
                 Celulas[i] = entrada[i].ToString();
             }
         }
 
+        // Lê o símbolo da posição informada
         public char Ler(int posicao)
         {
             if (Celulas.ContainsKey(posicao))
@@ -28,11 +31,13 @@ namespace Parte3.models
             return Branco;
         }
 
+        // Escreve um símbolo na posição informada
         public void Escrever(int posicao, char simbolo)
         {
             Celulas[posicao] = simbolo.ToString();
         }
 
+        // Retorna o conteúdo atual da fita
         public override string ToString()
         {
             if (Celulas.Count == 0)

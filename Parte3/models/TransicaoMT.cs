@@ -21,6 +21,7 @@ namespace Parte3.models
             Direcao = direcao;
         }
 
+        // Retorna a transição no formato formal da MT
         public override string ToString()
         {
             return $"δ({EstadoOrigem},{SimboloLido}) → ({EstadoDestino},{NovoSimbolo},{Direcao})";
