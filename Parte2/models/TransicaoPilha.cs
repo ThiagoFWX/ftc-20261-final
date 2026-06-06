@@ -15,6 +15,7 @@
         this.acaoPilha = acaoPilha;
     }
 
+    // Verifica se a transição é um movimento λ (lambda)
     public bool EhMovimentoLambda()
     {
         return this.simboloEntrada == '\0';

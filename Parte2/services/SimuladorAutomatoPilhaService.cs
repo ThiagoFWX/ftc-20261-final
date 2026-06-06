@@ -6,6 +6,7 @@ using System.Linq;
 
 public class SimuladorAutomatoPilhaService
 {
+    // Limite para evitar loops infinitos
     private int limitePassos;
 
     public SimuladorAutomatoPilhaService(int limitePassos)
@@ -13,12 +14,14 @@ public class SimuladorAutomatoPilhaService
         this.limitePassos = limitePassos;
     }
 
+    // Executa a simulação do autômato com pilha
     public bool Simular(AutomatoPilha automato, string cadeiaEntrada)
     {
         Console.WriteLine("\nAutômato: " + automato.nome);
         Console.WriteLine("Cadeia: " + (cadeiaEntrada == "" ? "ε" : cadeiaEntrada));
         Console.WriteLine();
 
+        // Verifica se a entrada contém apenas símbolos válidos
         if (!CadeiaSimbolosValidos(automato, cadeiaEntrada))
         {
             Console.WriteLine("REJEITA");
@@ -27,6 +30,8 @@ public class SimuladorAutomatoPilhaService
 
         Queue<ConfiguracaoInstantanea> filaConfiguracoes = new Queue<ConfiguracaoInstantanea>();
         HashSet<string> configuracoesVisitadas = new HashSet<string>();
+
+        // Inicializa a pilha com o símbolo inicial
         Stack<char> pilhaInicial = new Stack<char>();
         pilhaInicial.Push(automato.simboloInicialPilha);
 
@@ -46,6 +51,7 @@ public class SimuladorAutomatoPilhaService
 
             string idConfiguracao = configAtual.ObterChaveVisitada();
 
+            // Evita processar configurações repetidas
             if (configuracoesVisitadas.Contains(idConfiguracao))
             {
                 continue;
@@ -55,6 +61,7 @@ public class SimuladorAutomatoPilhaService
 
             ExibirConfigAtual(configAtual, cadeiaEntrada, qntPassosExecutados);
 
+            // Aceita quando toda a entrada foi lida e a pilha está vazia
             if (LeuCadeias(configAtual, cadeiaEntrada) && configAtual.pilha.Count == 0)
             {
                 Console.WriteLine("\nACEITA");
@@ -70,6 +77,7 @@ public class SimuladorAutomatoPilhaService
             char topoPilha = configAtual.pilha.Peek();
             char simboloAtualEntrada = ObterSimboloAtualEntrada(configAtual, cadeiaEntrada);
 
+            // Busca as transições possíveis
             List<TransicaoPilha> transicoesDisponiveis = automato.ObterTransicoes(
                 configAtual.estado,
                 simboloAtualEntrada,
@@ -99,6 +107,7 @@ public class SimuladorAutomatoPilhaService
         return false;
     }
 
+    // Gera a próxima configuração após aplicar uma transição
     private ConfiguracaoInstantanea GerarNovaConfiguracao(
         ConfiguracaoInstantanea configAtual,
         TransicaoPilha transicao)
@@ -107,6 +116,7 @@ public class SimuladorAutomatoPilhaService
 
         novaPilha.Pop();
 
+        // Empilha os novos símbolos definidos na transição
         for (int i = transicao.acaoPilha.Length - 1; i >= 0; i--)
         {
             novaPilha.Push(transicao.acaoPilha[i]);
@@ -114,6 +124,7 @@ public class SimuladorAutomatoPilhaService
 
         int novaPosicaoEntrada = configAtual.posicaoEntrada;
 
+        // Avança a leitura se não for uma transição λ
         if (!transicao.EhMovimentoLambda())
         {
             novaPosicaoEntrada++;
@@ -126,6 +137,7 @@ public class SimuladorAutomatoPilhaService
         );
     }
 
+    // Avança a leitura se não for uma transição λ
     private Stack<char> CopiarPilha(Stack<char> pilhaOriginal)
     {
         Stack<char> novaPilha = new Stack<char>();
@@ -139,6 +151,7 @@ public class SimuladorAutomatoPilhaService
         return novaPilha;
     }
 
+    // Obtém o símbolo atual da entrada
     private char ObterSimboloAtualEntrada(
         ConfiguracaoInstantanea configAtual,
         string cadeiaEntrada)
@@ -151,6 +164,7 @@ public class SimuladorAutomatoPilhaService
         return cadeiaEntrada[configAtual.posicaoEntrada];
     }
 
+    // Verifica se toda a entrada já foi consumida
     private bool LeuCadeias(
         ConfiguracaoInstantanea configAtual,
         string cadeiaEntrada)
@@ -158,6 +172,7 @@ public class SimuladorAutomatoPilhaService
         return configAtual.posicaoEntrada == cadeiaEntrada.Length;
     }
 
+    // Valida se a entrada pertence ao alfabeto do autômato
     private bool CadeiaSimbolosValidos(
         AutomatoPilha automato,
         string cadeiaEntrada)
@@ -171,6 +186,7 @@ public class SimuladorAutomatoPilhaService
         return true;
     }
 
+    // Exibe a configuração atual da simulação
     private void ExibirConfigAtual(
         ConfiguracaoInstantanea configuracao,
         string cadeiaEntrada,

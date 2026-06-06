@@ -23,6 +23,7 @@ public class AutomatoPilha
         this.simboloInicialPilha = simboloInicialPilha;
     }
 
+    // Retorna as transições possíveis para a configuração atual
     public List<TransicaoPilha> ObterTransicoes(string estado, char simboloEntrada, char topoPilha)
     {
         List<TransicaoPilha> possiveisTransicoes = new List<TransicaoPilha>();
