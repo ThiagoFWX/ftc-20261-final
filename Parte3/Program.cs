@@ -7,21 +7,30 @@ namespace Parte3
     {
         static void Main(string[] args)
         {
-            // Carrega configuração da MT
+            ExecutarMT("config/mt.json", "data/entradas_mt.txt", "MT - Reconhecimento aⁿbⁿcⁿ", true);
+            ExecutarMT("config/mt_unario.json", "data/entradas_unario.txt", "MT - Funcao f(n) = n + 1", false);
+
+            Console.ReadKey();
+        }
+
+        static void ExecutarMT(string arquivoMt, string arquivoEntradas, string titulo, bool mostrarAceitacao)
+        {
+            Console.WriteLine();
+            Console.WriteLine("=================================");
+            Console.WriteLine(titulo);
+            Console.WriteLine("=================================");
+            Console.WriteLine();
+
             MtConfigLoaderService loader = new MtConfigLoaderService();
 
-            MaquinaTuring mt = loader.CarregarMT("config/mt.json");
+            MaquinaTuring mt = loader.CarregarMT(arquivoMt);
 
-            // Ler entradas
             FileReaderService reader = new FileReaderService();
 
-            List<string> entradas = reader.LerEntradas("data/entradas_mt.txt");
+            List<string> entradas = reader.LerEntradas(arquivoEntradas);
 
-
-            // Criar simulador
             MtSimulatorService simulator = new MtSimulatorService(mt);
 
-            // Executar todas entradas
             foreach (string entrada in entradas)
             {
                 bool aceita = simulator.Simular(entrada);
@@ -39,12 +48,17 @@ namespace Parte3
                 }
 
                 Console.WriteLine();
-                Console.WriteLine(aceita ? "RESULTADO: ACEITA" : "RESULTADO: REJEITA");
+                if (mostrarAceitacao)
+                {
+                    Console.WriteLine(aceita ? "RESULTADO: ACEITA" : "RESULTADO: REJEITA");
+                }
+                else
+                {
+                    Console.WriteLine($"SAIDA: {simulator.Fita}");
+                }
                 Console.WriteLine("=================================");
                 Console.WriteLine();
             }
-
-            Console.ReadKey();
+        }
         }
     }
-}

@@ -25,15 +25,15 @@ namespace Parte3.services
         public bool Simular(string entrada)
         {
             EstadoAtual = MT.EstadoInicial;
-            Passos = 0;
+            Passos = 1;
             Rastro.Clear();
             Cabecote = new Cabecote();
             Fita = new Fita(entrada);
 
+            RegistrarRastro();
+
             while (Passos < LimitePassos)
             {
-                RegistrarRastro();
-
                 if (EstadoAtual.EhAceitacao)
                 {
                     return true;
@@ -56,6 +56,7 @@ namespace Parte3.services
                 ExecutarTransicao(transicao);
 
                 Passos++;
+                RegistrarRastro();
             }
 
             return false;
