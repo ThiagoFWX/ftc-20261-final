@@ -126,7 +126,7 @@ Parte3/
 ## 🎥 Vídeo de Defesa
 
 Link do vídeo:
-👉 
+👉 [Vídeo - Trabalho Final FTC](https://youtu.be/5LJL_L8kBv4)
 
 ---
 
